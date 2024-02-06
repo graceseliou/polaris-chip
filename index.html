@@ -43,50 +43,109 @@
     <button id="delete">Delete Card</button>
   </div>
 
-  <h1>grace's top songs</h1>
-  <my-card title="love, or lack thereof" 
-  paragraph="by isaac dunbar" 
-  image="https://images.genius.com/074330b97ebf2ab0d935944c27f55ce7.1000x1000x1.png" 
-  paragraph2="album: evil twin" 
-  link="https://youtu.be/ktN8TIyJv3Y?si=7uKO0iqPRDETQXZ_" 
-  button="YouTube Link" 
-  bgcolor="black"></my-card>
+  <h1>my top songs</h1>
+  <div class="card-wrapper">
+    <my-card title="love, or lack thereof" 
+    paragraph="by isaac dunbar" 
+    image="https://images.genius.com/074330b97ebf2ab0d935944c27f55ce7.1000x1000x1.png" 
+    paragraph2="album: evil twin" 
+    link="https://youtu.be/ktN8TIyJv3Y?si=7uKO0iqPRDETQXZ_" 
+    button="YouTube Link" 
+    bgcolor="black"></my-card>
 
-  <my-card title="naked" 
-  paragraph="by james arthur" 
-  image="https://i.scdn.co/image/ab67616d0000b273dc16d839ab77c64bdbeb3660" 
-  paragraph2="album: YOU" 
-  link="https://open.spotify.com/track/2fmyrECK6bdfoGven0UMZx?si=dbe5cf4942224213" 
-  button="Spotify Link" 
-  bgcolor="#e3eef9"></my-card>
+    <my-card title="naked" 
+    paragraph="by james arthur" 
+    image="https://i.scdn.co/image/ab67616d0000b273dc16d839ab77c64bdbeb3660" 
+    paragraph2="album: YOU" 
+    link="https://open.spotify.com/track/2fmyrECK6bdfoGven0UMZx?si=dbe5cf4942224213" 
+    button="Spotify Link" 
+    bgcolor="#e3eef9"></my-card>
 
-  <my-card title="not strong enough" 
-  paragraph="by boygenius" 
-  image="https://i1.sndcdn.com/artworks-mrZ2Ofxq1sxG-0-t500x500.jpg" 
-  paragraph2="album: the record" 
-  link="https://soundcloud.com/boygenius-104848738/not-strong-enough" 
-  button="Soundcloud Link" 
-  bgcolor="#9d4122"></my-card>
+    <my-card title="not strong enough" 
+    paragraph="by boygenius" 
+    image="https://i1.sndcdn.com/artworks-mrZ2Ofxq1sxG-0-t500x500.jpg" 
+    paragraph2="album: the record" 
+    link="https://soundcloud.com/boygenius-104848738/not-strong-enough" 
+    button="Soundcloud Link" 
+    bgcolor="#9d4122"></my-card>
 
-  <my-card title="call your mom" 
-  paragraph="by noah kahan" 
-  image="https://i.scdn.co/image/ab67616d0000b27365a472d8326d4571bf725422" 
-  paragraph2="album: we'll all be here forever" 
-  link="https://open.spotify.com/track/3fKpSA5w8iqLe9sNdIDESW?si=6a333d19f11048fa" 
-  button="Spotify Link" 
-  bgcolor="#dad5d4"></my-card>
+    <my-card title="call your mom" 
+    paragraph="by noah kahan" 
+    image="https://i.scdn.co/image/ab67616d0000b27365a472d8326d4571bf725422" 
+    paragraph2="album: we'll all be here forever" 
+    link="https://open.spotify.com/track/3fKpSA5w8iqLe9sNdIDESW?si=6a333d19f11048fa" 
+    button="Spotify Link" 
+    bgcolor="#dad5d4"></my-card>
 
-  <my-card title='"slut!"' 
-  paragraph="by taylor swift" 
-  image="https://images.genius.com/b0492b4228367370f877ae98a85d8f32.1000x1000x1.png" 
-  paragraph2="album: 1989 (taylor's version)" 
-  link="https://youtu.be/qrxsceexTBw?si=-qsNTcYfTvNobkBj" 
-  button="YouTube Link" 
-  bgcolor="#6595be"></my-card>
+    <my-card title='"slut!"' 
+    paragraph="by taylor swift" 
+    image="https://images.genius.com/b0492b4228367370f877ae98a85d8f32.1000x1000x1.png" 
+    paragraph2="album: 1989 (taylor's version)" 
+    link="https://youtu.be/qrxsceexTBw?si=-qsNTcYfTvNobkBj" 
+    button="YouTube Link" 
+    bgcolor="#6595be"></my-card>
+
+    <my-card title="Fresh Prince" 
+    image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"></my-card>
+
+  </div>
   
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+
+<script>
+document.querySelector('.duplicate').addEventListener('click', function(event) {
+  const newCard = document.querySelector('my-card').cloneNode(true);
+  // Q1: this is currently appending to the body;
+  console.log(newCard)
+ document.querySelector('.card-wrapper').appendChild(newCard);
+});
+
+// Q2: How would we change the title of the card?
+document.querySelector('#changetitle').addEventListener('click', function(e) {
+  // Selecting the first 'my-card' element
+  const newCard = document.querySelector('my-card');
+
+  // Accessing shadow DOM
+  const shadowRoot = newCard.shadowRoot;
+
+  // Selecting elements inside shadow DOM
+  const newCardHeading = shadowRoot.querySelector('.heading');
+  const newCardParagraph = shadowRoot.querySelector('.paragraph');
+  const newCardParagraph2 = shadowRoot.querySelector('.paragraph2');
+
+  // Replacing elements
+  newCardHeading.textContent = "changed heading";
+  newCardParagraph.textContent = "changed paragraph";
+  newCardParagraph2.textContent = "changed second paragraph";
+})
+
+// Q3: How would we change the image of the card on click to https://github.com/elmsln.png
+document.querySelector('#changeimage').addEventListener('click', function(e) {
+  document.querySelector('.center').src = "https://i.redd.it/n4yr35lj36db1.jpg";
+})
+
+// Q4: How would we hook up the button to change the background via a css class?
+document.querySelector('#changebg').addEventListener('click', function(e) {
+  // document.querySelector('.btn-wrapper').classList.add('change-color');
+  // only changes the background once, irreversible
+  const matches = cardlist.querySelectorAll('.card-wrapper');
+  matches.forEach(element => {
+    element.classList.toggle('change-color');
+  })
+})
+
+// Q5: How would we delete the last card?
+document.querySelector('#delete').addEventListener('click', function(e) {
+  const newCard = document.querySelectorAll('my-card');
+      const lastCard = newCard[newCard.length - 1];
+    
+      if (newCard.length !== 1) {
+        lastCard.remove();
+      }
+})  
+</script>
 
 </body>
 
