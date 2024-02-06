@@ -28,6 +28,10 @@ export class MyCard extends LitElement {
         display: inline-flex;
       }
 
+      .control-wrapper {
+        text-align: center;
+      }
+
       a {
         text-decoration: none;
       }
