@@ -45,9 +45,9 @@ export class MyCard extends LitElement {
       width: 350px;
     }
 
-    /* .btn-wrapper.change-color {
+    .change-color {
       background-color: lavender;
-    } */
+    }
 
     .btn {
       background-color: white;

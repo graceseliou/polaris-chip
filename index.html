@@ -116,24 +116,30 @@ document.querySelector('#changetitle').addEventListener('click', function(e) {
   const newCardParagraph2 = shadowRoot.querySelector('.paragraph2');
 
   // Replacing elements
-  newCardHeading.textContent = "changed heading";
-  newCardParagraph.textContent = "changed paragraph";
-  newCardParagraph2.textContent = "changed second paragraph";
+  newCardHeading.textContent = "banana song";
+  newCardParagraph.textContent = "minions";
+  newCardParagraph2.textContent = "album: minions";
 })
 
-// Q3: How would we change the image of the card on click to https://github.com/elmsln.png
 document.querySelector('#changeimage').addEventListener('click', function(e) {
-  document.querySelector('.center').src = "https://i.redd.it/n4yr35lj36db1.jpg";
+  // Selecting the first 'my-card' element
+  const newCard = document.querySelector('my-card');
+
+  // Accessing shadow DOM
+  const shadowRoot = newCard.shadowRoot;
+
+  // Selecting element inside shadow DOM
+  const cardImage = shadowRoot.querySelector('.center');
+
+  // Replacing element
+  cardImage.setAttribute('src', 'https://i.redd.it/n4yr35lj36db1.jpg');
 })
 
 // Q4: How would we hook up the button to change the background via a css class?
 document.querySelector('#changebg').addEventListener('click', function(e) {
-  // document.querySelector('.btn-wrapper').classList.add('change-color');
-  // only changes the background once, irreversible
-  const matches = cardlist.querySelectorAll('.card-wrapper');
-  matches.forEach(element => {
-    element.classList.toggle('change-color');
-  })
+  const newCard = document.querySelector('my-card');
+
+  newCard.classList.toggle('change-color');
 })
 
 // Q5: How would we delete the last card?
