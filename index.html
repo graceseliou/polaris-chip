@@ -45,40 +45,40 @@
 
   <h1>my top songs</h1>
   <div class="card-wrapper">
-    <my-card title="love, or lack thereof" 
-    paragraph="by isaac dunbar" 
+    <my-card fancy title="love, or lack thereof" 
+    paragraph="by isaac dunbar | " 
     image="https://images.genius.com/074330b97ebf2ab0d935944c27f55ce7.1000x1000x1.png" 
     paragraph2="album: evil twin" 
     link="https://youtu.be/ktN8TIyJv3Y?si=7uKO0iqPRDETQXZ_" 
     button="YouTube Link" 
-    bgcolor="black"></my-card>
+    bgcolor="#051726"></my-card>
 
-    <my-card title="naked" 
-    paragraph="by james arthur" 
-    image="https://i.scdn.co/image/ab67616d0000b273dc16d839ab77c64bdbeb3660" 
-    paragraph2="album: YOU" 
+    <my-card fancy title="naked" 
+    paragraph="by james arthur | " 
+    image="https://i1.sndcdn.com/artworks-000274967243-ion6nl-t500x500.jpg" 
+    paragraph2="album: YOU"
     link="https://open.spotify.com/track/2fmyrECK6bdfoGven0UMZx?si=dbe5cf4942224213" 
     button="Spotify Link" 
-    bgcolor="#e3eef9"></my-card>
+    bgcolor="#fc8002"></my-card>
 
-    <my-card title="not strong enough" 
-    paragraph="by boygenius" 
+    <my-card fancy title="not strong enough" 
+    paragraph="by boygenius | " 
     image="https://i1.sndcdn.com/artworks-mrZ2Ofxq1sxG-0-t500x500.jpg" 
     paragraph2="album: the record" 
     link="https://soundcloud.com/boygenius-104848738/not-strong-enough" 
     button="Soundcloud Link" 
     bgcolor="#9d4122"></my-card>
 
-    <my-card title="call your mom" 
-    paragraph="by noah kahan" 
+    <my-card fancy title="call your mom" 
+    paragraph="by noah kahan | " 
     image="https://i.scdn.co/image/ab67616d0000b27365a472d8326d4571bf725422" 
     paragraph2="album: we'll all be here forever" 
     link="https://open.spotify.com/track/3fKpSA5w8iqLe9sNdIDESW?si=6a333d19f11048fa" 
     button="Spotify Link" 
     bgcolor="#dad5d4"></my-card>
 
-    <my-card title='"slut!"' 
-    paragraph="by taylor swift" 
+    <my-card fancy title='"slut!"' 
+    paragraph="by taylor swift | " 
     image="https://images.genius.com/b0492b4228367370f877ae98a85d8f32.1000x1000x1.png" 
     paragraph2="album: 1989 (taylor's version)" 
     link="https://youtu.be/qrxsceexTBw?si=-qsNTcYfTvNobkBj" 
@@ -97,9 +97,8 @@
 <script>
 document.querySelector('.duplicate').addEventListener('click', function(event) {
   const newCard = document.querySelector('my-card').cloneNode(true);
-  // Q1: this is currently appending to the body;
   console.log(newCard)
- document.querySelector('.card-wrapper').appendChild(newCard);
+  document.querySelector('.card-wrapper').appendChild(newCard);
 });
 
 // Q2: How would we change the title of the card?
@@ -122,15 +121,12 @@ document.querySelector('#changetitle').addEventListener('click', function(e) {
 })
 
 document.querySelector('#changeimage').addEventListener('click', function(e) {
-  // Selecting the first 'my-card' element
   const newCard = document.querySelector('my-card');
 
-  // Accessing shadow DOM
   const shadowRoot = newCard.shadowRoot;
 
-  // Selecting element inside shadow DOM
-  const cardImage = shadowRoot.querySelector('.center');
-
+  const cardImage = shadowRoot.querySelector('.image');
+  
   // Replacing element
   cardImage.setAttribute('src', 'https://i.redd.it/n4yr35lj36db1.jpg');
 })
@@ -139,7 +135,15 @@ document.querySelector('#changeimage').addEventListener('click', function(e) {
 document.querySelector('#changebg').addEventListener('click', function(e) {
   const newCard = document.querySelector('my-card');
 
-  newCard.classList.toggle('change-color');
+  if(newCard.bgcolor == "#051726") {
+    newCard.bgcolor = "lavender";
+  }
+  else if(newCard.bgcolor == "lavender"){
+    newCard.bgcolor = "#051726";
+  }
+  else {
+    pass;
+  }
 })
 
 // Q5: How would we delete the last card?
