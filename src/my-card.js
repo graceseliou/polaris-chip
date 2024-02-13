@@ -73,7 +73,7 @@ export class MyCard extends LitElement {
 
     .btn:focus, 
     .btn:hover {
-      background-color: crimson;
+      background-color: #6b66c6;
     }
 
     .heading {
