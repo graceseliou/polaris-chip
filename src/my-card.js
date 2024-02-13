@@ -18,7 +18,8 @@ export class MyCard extends LitElement {
     this.paragraph="";
     this.paragraph2="";
     this.image="#";
-    this.button=""
+    this.link="#";
+    this.button="";
 
     this.bgcolor="black";
 
@@ -159,7 +160,13 @@ export class MyCard extends LitElement {
       <div class="card">
         <div class="btn-wrapper"
         style="background-color: ${this.bgcolor}">
-            <img src="${this.image}" alt="imgname" class="image">
+          <meme-maker 
+            alt="Cat stalking a small toy" 
+            image-url="https://cdn2.thecatapi.com/images/9j5.jpg" 
+            top-text="I bring you" 
+            bottom-text="the death">
+          </meme-maker>
+            <!-- <img src="${this.image}" alt="imgname" class="image">-->
             <h1 class="heading">${this.title}</h1>
             <details ?open="${this.fancy}" @toggle="${this.openChanged}">
               <summary>description</summary>
@@ -170,6 +177,7 @@ export class MyCard extends LitElement {
             </details>
             <!--<h1 class="paragraph">${this.paragraph}</h1>-->
             <!--<h1 class="paragraph2">${this.paragraph2}</h1>-->
+            <a href="${this.link}" rel="noopener noreferrer"></a>
             <button class="btn">${this.button}</button>
         </div>
       </div>
