@@ -18,7 +18,7 @@ export class MyCard extends LitElement {
     this.paragraph="";
     this.paragraph2="";
     this.image="#";
-    this.link="#";
+    this.link="";
     this.button="";
 
     this.bgcolor="black";
@@ -177,8 +177,9 @@ export class MyCard extends LitElement {
             </details>
             <!--<h1 class="paragraph">${this.paragraph}</h1>-->
             <!--<h1 class="paragraph2">${this.paragraph2}</h1>-->
-            <a href="${this.link}" rel="noopener noreferrer"></a>
+            <a href="${this.link}" rel="noopener noreferrer">
             <button class="btn">${this.button}</button>
+            </a>
         </div>
       </div>
     `;
@@ -190,6 +191,7 @@ export class MyCard extends LitElement {
       paragraph: { type: String },
       image: { type: String },
       paragraph2: { type: String },
+      link: { type: String},
       button: { type: String },
 
       bgcolor: { type: String },
