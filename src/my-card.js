@@ -48,101 +48,101 @@ export class MyCard extends LitElement {
         text-decoration: none;
       }
 
-    .btn-wrapper {
-      border: 2px solid black;
-      background-color: black;
-      text-align: center;
-      padding: 16px;
-      margin: 8px;
-      height: 550px;
-      width: 350px;
-    }
+      .btn-wrapper {
+        border: 2px solid black;
+        background-color: black;
+        text-align: center;
+        padding: 16px;
+        margin: 8px;
+        height: 550px;
+        width: 350px;
+      }
 
-    .btn-wrapper.change-color {
-      background-color: lavender;
-    }
+      .btn-wrapper.change-color {
+        background-color: lavender;
+      }
 
-    .btn {
-      background-color: white;
-      color: black;
-      font-size: 20px;
-      border-radius: 15px;
-      padding: 12px;
-      margin-top: 10px;
-    }
+      .btn {
+        background-color: white;
+        color: black;
+        font-size: 20px;
+        border-radius: 15px;
+        padding: 12px;
+        margin-top: 10px;
+      }
 
-    .btn:focus, 
-    .btn:hover {
-      background-color: #6b66c6;
-    }
+      .btn:focus, 
+      .btn:hover {
+        background-color: #6b66c6;
+      }
 
-    .heading {
-      color: white;
-      text-align: center;
-      font-size: 35px;
-      padding: 16px;
-      /* margin: 8px 8px 8px 8px; */
-    }
+      .heading {
+        color: white;
+        text-align: center;
+        font-size: 35px;
+        padding: 16px;
+        /* margin: 8px 8px 8px 8px; */
+      }
 
-    .paragraph {
-      color: white;
-      text-align: center;
-      font-size: 20px;
-      padding: 16px;
-      margin: 8px;
-    }
+      .paragraph {
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        padding: 16px;
+        margin: 8px;
+      }
 
-    .card{
-      /* display: flex; */
-      padding: 24px;
-    }
+      .card{
+        /* display: flex; */
+        padding: 24px;
+      }
 
-    .image {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 35px;
-      width: 200px;
-    }
+      .image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 35px;
+        width: 200px;
+      }
 
-    .paragraph2 {
-      color: white;
-      text-align: center;
-      font-size: 20px;
-      padding: 16px;
-      margin: 8px;
-    }
+      .paragraph2 {
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        padding: 16px;
+        margin: 8px;
+      }
 
-    .heading, .paragraph {
-      margin: 4px;
-    }
+      .heading, .paragraph {
+        margin: 4px;
+      }
 
-    /* .btn {
-      font-size: 16px;
-      margin-top: 5px;
-    } */
+      /* .btn {
+        font-size: 16px;
+        margin-top: 5px;
+      } */
 
-    details summary {
-      color: white;
-      text-align: left;
-      font-size: 20px;
-      padding: 8px 0;
-    }
+      details summary {
+        color: white;
+        text-align: left;
+        font-size: 20px;
+        padding: 8px 0;
+      }
 
-    details[open] summary {
-      color: white;
-      font-weight: bold;
-    }
-    
-    details div {
-      color: white;
-      border: 2px solid black;
-      text-align: left;
-      padding: 8px;
-      height: 70px;
-      overflow: auto;
-    }
-  `;
+      details[open] summary {
+        color: white;
+        font-weight: bold;
+      }
+      
+      details div {
+        color: white;
+        border: 2px solid black;
+        text-align: left;
+        padding: 8px;
+        height: 70px;
+        overflow: auto;
+      }
+    `;
   }
 
   openChanged(e) {
