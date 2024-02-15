@@ -45,10 +45,10 @@
 
   <h1>counter</h1>
   <div class="counter-wrapper">
-    <counter-app number="16"></counter-app>
+    <counter-app number="16" button1="-" button2="+" min="10" max="25"></counter-app>
+    <counter-app number="0" button1="-" button2="+" min="0" max="100"></counter-app>
   </div>
-  <!--<counter-app number="16" min="10" max="25"></counter-app>-->
-
+  
   <h1>my top songs</h1>
   <div class="card-wrapper">
     <my-card fancy title="love, or lack thereof" 
@@ -99,6 +99,7 @@
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
 
 <script>
 document.querySelector('.duplicate').addEventListener('click', function(event) {
