@@ -25,23 +25,23 @@ export class CounterApp extends LitElement {
                 display: inline-flex;
             }
 
-            :host([number="18"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="18"]) .number {
+                color: #371f76;;
             }
-            :host([number="21"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="21"]) .number {
+                color: #371f76;;
             }
-            :host([number="10"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="10"]) .number {
+                color: #371f76;;
             }
-            :host([number="25"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="25"]) .number {
+                color: #371f76;;
             }
-            :host([number="0"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="0"]) .number {
+                color: #371f76;;
             }
-            :host([number="100"]) .counter-wrapper {
-                background-color: #371f76;;
+            :host([number="100"]) .number {
+                color: #371f76;;
             }
 
             .counter-wrapper {
