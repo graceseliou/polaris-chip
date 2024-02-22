@@ -13,7 +13,6 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
       background-color: #ededed;
     }
     polaris-chip {
@@ -24,15 +23,19 @@
 </head>
 
 <body>
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip></polaris-chip>
+  <h1>alerts</h1>
+  <div class="alert-wrapper">
+    <alert-notification state="Alert" date="January 1, 2024" information="information about the alert" sticky></alert-notification>
+    <alert-notification state="notice" information="Alert info"></alert-notification>
+    <alert-notification state="warning" information="Alert info"></alert-notification>
+    <alert-notification state="Alert" information="Alert info"></alert-notification>
+  </div>
 
-  <!-- this is going to take the tag and change the title -->
-  <polaris-chip title="News of Record" link="https://www.psu.edu/"></polaris-chip>
-  <polaris-chip title="Faculty and Staff"></polaris-chip>
-  <polaris-chip title="Sports are the only thing that matter (false)"></polaris-chip>
-  <polaris-chip title="Grants and Donations"></polaris-chip>
+  <h1>counter</h1>
+  <div class="counter-wrapper">
+    <counter-app number="16" button1="-" button2="+" min="10" max="25"></counter-app>
+    <counter-app number="0" button1="-" button2="+" min="0" max="100"></counter-app>
+  </div>
 
   <h1>controls</h1>
   <div class="control-wrapper">
@@ -41,12 +44,6 @@
     <button id="changeimage">Change image</button>
     <button id="changebg">Change background</button>
     <button id="delete">Delete Card</button>
-  </div>
-
-  <h1>counter</h1>
-  <div class="counter-wrapper">
-    <counter-app number="16" button1="-" button2="+" min="10" max="25"></counter-app>
-    <counter-app number="0" button1="-" button2="+" min="0" max="100"></counter-app>
   </div>
   
   <h1>my top songs</h1>
@@ -95,73 +92,85 @@
     image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"></my-card>
 
   </div>
+
+  <h1>polaris-chip</h1>
+  <!-- this is going to do whatever the tag's defaults are -->
+  <polaris-chip></polaris-chip>
+  <!-- chip default -->
+
+  <!-- this is going to take the tag and change the title -->
+  <polaris-chip title="News of Record" link="https://www.psu.edu/"></polaris-chip>
+  <polaris-chip title="Faculty and Staff"></polaris-chip>
+  <polaris-chip title="Sports are the only thing that matter (false)"></polaris-chip>
+  <polaris-chip title="Grants and Donations"></polaris-chip>
   
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
   <script type="module" src="./src/counter-app.js"></script>
+  <script type="module" src="./src/alert-notification.js"></script>
 
 <script>
-document.querySelector('.duplicate').addEventListener('click', function(event) {
-  const newCard = document.querySelector('my-card').cloneNode(true);
-  console.log(newCard)
-  document.querySelector('.card-wrapper').appendChild(newCard);
-});
+  document.querySelector('.duplicate').addEventListener('click', function(event) {
+    const newCard = document.querySelector('my-card').cloneNode(true);
+    console.log(newCard)
+    document.querySelector('.card-wrapper').appendChild(newCard);
+  });
 
-// Q2: How would we change the title of the card?
-document.querySelector('#changetitle').addEventListener('click', function(e) {
-  // Selecting the first 'my-card' element
-  const newCard = document.querySelector('my-card');
+  // Q2: How would we change the title of the card?
+  document.querySelector('#changetitle').addEventListener('click', function(e) {
+    // Selecting the first 'my-card' element
+    const newCard = document.querySelector('my-card');
 
-  // Accessing shadow DOM
-  const shadowRoot = newCard.shadowRoot;
+    // Accessing shadow DOM
+    const shadowRoot = newCard.shadowRoot;
 
-  // Selecting elements inside shadow DOM
-  const newCardHeading = shadowRoot.querySelector('.heading');
-  const newCardParagraph = shadowRoot.querySelector('.paragraph');
-  const newCardParagraph2 = shadowRoot.querySelector('.paragraph2');
+    // Selecting elements inside shadow DOM
+    const newCardHeading = shadowRoot.querySelector('.heading');
+    const newCardParagraph = shadowRoot.querySelector('.paragraph');
+    const newCardParagraph2 = shadowRoot.querySelector('.paragraph2');
 
-  // Replacing elements
-  newCardHeading.textContent = "banana song";
-  newCardParagraph.textContent = "minions";
-  newCardParagraph2.textContent = "album: minions";
-})
+    // Replacing elements
+    newCardHeading.textContent = "banana song";
+    newCardParagraph.textContent = "minions";
+    newCardParagraph2.textContent = "album: minions";
+  })
 
-document.querySelector('#changeimage').addEventListener('click', function(e) {
-  const newCard = document.querySelector('my-card');
+  document.querySelector('#changeimage').addEventListener('click', function(e) {
+    const newCard = document.querySelector('my-card');
 
-  const shadowRoot = newCard.shadowRoot;
+    const shadowRoot = newCard.shadowRoot;
 
-  const cardImage = shadowRoot.querySelector('.image');
-  
-  // Replacing element
-  cardImage.setAttribute('src', 'https://i.redd.it/n4yr35lj36db1.jpg');
-})
-
-// Q4: How would we hook up the button to change the background via a css class?
-document.querySelector('#changebg').addEventListener('click', function(e) {
-  const newCard = document.querySelector('my-card');
-
-  if(newCard.bgcolor == "#051726") {
-    newCard.bgcolor = "lavender";
-  }
-  else if(newCard.bgcolor == "lavender"){
-    newCard.bgcolor = "#051726";
-  }
-  else {
-    pass;
-  }
-})
-
-// Q5: How would we delete the last card?
-document.querySelector('#delete').addEventListener('click', function(e) {
-  const newCard = document.querySelectorAll('my-card');
-      const lastCard = newCard[newCard.length - 1];
+    const cardImage = shadowRoot.querySelector('.image');
     
-      if (newCard.length !== 1) {
-        lastCard.remove();
-      }
-})  
+    // Replacing element
+    cardImage.setAttribute('src', 'https://i.redd.it/n4yr35lj36db1.jpg');
+  })
+
+  // Q4: How would we hook up the button to change the background via a css class?
+  document.querySelector('#changebg').addEventListener('click', function(e) {
+    const newCard = document.querySelector('my-card');
+
+    if(newCard.bgcolor == "#051726") {
+      newCard.bgcolor = "lavender";
+    }
+    else if(newCard.bgcolor == "lavender"){
+      newCard.bgcolor = "#051726";
+    }
+    else {
+      pass;
+    }
+  })
+
+  // Q5: How would we delete the last card?
+  document.querySelector('#delete').addEventListener('click', function(e) {
+    const newCard = document.querySelectorAll('my-card');
+        const lastCard = newCard[newCard.length - 1];
+      
+        if (newCard.length !== 1) {
+          lastCard.remove();
+        }
+  })  
 </script>
 
 </body>

@@ -23,7 +23,7 @@ export class MyCard extends LitElement {
 
     this.bgcolor="black";
 
-    this.fancy = false;
+    this.fancy=false;
   }
 
   static get styles() {
@@ -160,13 +160,13 @@ export class MyCard extends LitElement {
       <div class="card">
         <div class="btn-wrapper"
         style="background-color: ${this.bgcolor}">
-          <meme-maker 
+          <!--<meme-maker 
             alt="Cat stalking a small toy" 
             image-url="https://cdn2.thecatapi.com/images/9j5.jpg" 
             top-text="I bring you" 
             bottom-text="the death">
-          </meme-maker>
-            <!-- <img src="${this.image}" alt="imgname" class="image">-->
+          </meme-maker>-->
+            <img src="${this.image}" alt="imgname" class="image">
             <h1 class="heading">${this.title}</h1>
             <details ?open="${this.fancy}" @toggle="${this.openChanged}">
               <summary>description</summary>
