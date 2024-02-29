@@ -11,20 +11,27 @@ export class Alert extends LitElement {
         this.state="";
         this.icon="#";
         this.date="";
-        this.information="";
+        this.notification="";
 
+        this.open=true;
         this.fancy=false;
-
         this.sticky=false;
     }
 
     static get styles() {
         return css`
+            :host([sticky]).alert-wrapper {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
             :host {
                 display: inline-flex;
             }
 
             .alert-wrapper {
+                padding: 8px;
                 font-size: 16px;
                 color: black;
                 width: 100vw;
@@ -41,7 +48,7 @@ export class Alert extends LitElement {
                 width: 200px;
             }
 
-            details summary {
+            /* details summary {
                 background-color: orange;
                 color: black;
                 text-align: center;
@@ -64,7 +71,7 @@ export class Alert extends LitElement {
                 padding: 8px;
                 height: 70px;
                 overflow: auto;
-            }
+            } */
         `;
     }
 
@@ -82,12 +89,12 @@ export class Alert extends LitElement {
         let color = "white";
         if(this.state === "notice") color = "lightblue";
         if(this.state === "warning") color = "yellow";
-        if(this.state === "Alert") color = "red";
+        if(this.state === "alert") color = "red";
 
         return html`
-        <div class="alert-wrapper" style="background-color:${color}">
+        <div class="alert-wrapper ${this.open ? "" : "closed"}" ?sticky="${this.sticky}" style="background-color:${color}">
             <h1 class="state">${this.state}</h1>
-            <h1 class="information">${this.information}</h1>
+            <h1 class="notification">${this.notification}</h1>
         </div>
 
         <!-- <details ?open="${this.fancy}" @toggle="${this.openChanged}">
@@ -108,12 +115,10 @@ export class Alert extends LitElement {
             state: { type: String, reflect: true },
             icon: { type: String },
             date: { type: String },
-            information: { type: String },
-            border1: { type: String },
-            border2: { type: String },
+            notification: { type: String },
 
+            open: { type: Boolean, reflect: true },
             fancy: { type: Boolean, reflect: true },
-
             sticky: { type: Boolean },
         }
     }
