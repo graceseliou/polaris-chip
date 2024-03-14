@@ -42,6 +42,7 @@ export class Alert extends LitElement {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                overflow: auto;
             }
 
             /* .alert-wrapper-left,
@@ -68,7 +69,7 @@ export class Alert extends LitElement {
                 transform: skew(20deg);
                 height: 100%;
                 text-align: center;
-                width: 600px;
+                width: 75vw;
                 margin-left: 16px;
                 margin-right: 16px;
                 display: inline-flex;
