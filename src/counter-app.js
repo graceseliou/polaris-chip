@@ -92,6 +92,16 @@ export class CounterApp extends LitElement {
         `;
     }
 
+    static get properties() {
+        return {
+            number: { type: Number, reflect: true },
+            button1: { type: String },
+            button2: { type: String },
+            min: { type: Number },
+            max: { type: Number },
+        };
+    }
+
     render() {
         return html`
         <confetti-container id="confetti">
@@ -102,16 +112,6 @@ export class CounterApp extends LitElement {
         </div>
         </confetti-container>
         `;
-    }
-
-    static get properties() {
-        return {
-            number: { type: Number, reflect: true },
-            button1: { type: String },
-            button2: { type: String },
-            min: { type: Number },
-            max: { type: Number },
-        };
     }
 
     increment() {
@@ -132,15 +132,15 @@ export class CounterApp extends LitElement {
         }
       }
       
-      makeItRain() {
-        import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
-          (module) => {
-            setTimeout(() => {
-              this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
-            }, 0);
-          }
-        );
-      } 
+    makeItRain() {
+    import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+        (module) => {
+        setTimeout(() => {
+            this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+        }, 0);
+        }
+    );
+    } 
 }
 
 globalThis.customElements.define(CounterApp.tag, CounterApp);

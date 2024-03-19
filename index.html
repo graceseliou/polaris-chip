@@ -23,6 +23,9 @@
 </head>
 
 <body>
+  <h1>party ui test center</h1>
+  <haxcms-party-ui></haxcms-party-ui>
+
   <h1>alerts</h1>
   <div class="alert-wrapper">
     <alert-notification sticky state="alert" date="January 1, 2024 12:00AM" message="test alert message"></alert-notification>
@@ -89,25 +92,26 @@
 
     <my-card title="Fresh Prince" 
     image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"></my-card>
-
   </div>
 
   <h1>polaris-chip</h1>
   <!-- this is going to do whatever the tag's defaults are -->
   <polaris-chip></polaris-chip>
   <!-- chip default -->
-
   <!-- this is going to take the tag and change the title -->
   <polaris-chip title="News of Record" link="https://www.psu.edu/"></polaris-chip>
   <polaris-chip title="Faculty and Staff"></polaris-chip>
   <polaris-chip title="Sports are the only thing that matter (false)"></polaris-chip>
   <polaris-chip title="Grants and Donations"></polaris-chip>
   
+
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
   <script type="module" src="./src/counter-app.js"></script>
   <script type="module" src="./src/alert-notification.js"></script>
+  <script type="module" src="./src/haxcms-party-ui.js"></script>
+
 
 <script>
   document.querySelector('.duplicate').addEventListener('click', function(event) {
