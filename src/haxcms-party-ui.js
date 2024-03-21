@@ -12,6 +12,7 @@ export class PartyUI extends DDD {
         this.save="";
         this.username="";
         this.userArray=[""];
+        this.maxUsers=4;
     }
 
     static get styles() {
@@ -32,7 +33,7 @@ export class PartyUI extends DDD {
             background-color: pink;
             padding: 20px;
             width: 400px;
-            height: 340px;
+            height: 420px;
             display: inline-block;
             overflow: auto;
             margin-left: 200px;
@@ -53,7 +54,6 @@ export class PartyUI extends DDD {
         }
 
         .characters-wrapper {
-            /* background-color: #6b66c6; */
             padding: 20px;
             width: 350px;
             display: flex;
@@ -61,14 +61,25 @@ export class PartyUI extends DDD {
             margin-bottom: 10px;
             justify-content: center;
             align-items: center;
+            overflow: auto;
+        }
+
+        .characters-wrapper rpg-character {
+            display: flex;
+        }
+
+        .characters-wrapper p {
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
         }
 
         .end-button {
-            margin-right: 50px;
+            margin-right: 30px;
         }
 
         .save-button {
-            margin-legt: 50px;
+            margin-left: 30px;
         }
 
         .end-wrapper {
@@ -89,7 +100,8 @@ export class PartyUI extends DDD {
           ...super.properties,
             save: { type: String },
             username: { type: String, reflect: true },
-            userArray: { type: Array, reflect: true }
+            userArray: { type: Array, reflect: true },
+            maxUsers: { type: Number },
         }
     }
 
@@ -98,7 +110,7 @@ export class PartyUI extends DDD {
         <div class="party-ui-wrapper">
             <div class="usernames-wrapper">
                 <input class="text-input" type="text" value=${this.username} @input=${this.updateName}>
-                <button id="add-user-button" @click="${this.addUser}">Add User</button>
+                <button id="add-user-button" @click="${this.addUser}" ?disabled="${this.userArray.length >= this.maxUsers}">Add User</button>
             </div>
             <div class="characters-wrapper">
                 ${this.userArray.map(element =>
@@ -107,10 +119,19 @@ export class PartyUI extends DDD {
             <confetti-container id="confetti">
                 <div class="end-wrapper">
                     <p class="save">${this.save}</p>
-                    <button class="end-button">Delete</button>
+                    <button class="end-button" @click="${this.deleteUser}">Delete</button>
                     <button class="save-button" @click="${this.makeItRain}">Save</button>
                 </div>
             </confetti-container>
+        </div>
+        `;
+    }
+
+    characterView(name) {
+        return html `
+        <div>
+            <rpg-character id="rpg" hat="random" seed=${name} style="height: 100px; width: 100px;"></rpg-character>
+            <p>${name}</p>
         </div>
         `;
     }
@@ -121,15 +142,20 @@ export class PartyUI extends DDD {
     }
 
     addUser(event) {
-        this.userArray[this.userArray.length - 1];
-        this.shadowRoot.querySelector('.text-input').value ="";
-        this.userArray.push("");
+        if(this.userArray.length < this.maxUsers) {
+            this.userArray[this.userArray.length - 1];
+            this.shadowRoot.querySelector('.text-input').value ="";
+            this.userArray.push("");
+        }
     }
 
-    characterView(name) {
-        return html `
-        <rpg-character id="rpg" hat="random" seed=${name} style="height: 100px; width: 100px;"></rpg-character>
-        `;
+    deleteUser(event) {
+        if(this.userArray.length>0) {
+            this.userArray.pop();
+            setTimeout(() => {
+                this.requestUpdate();
+            });
+        }
     }
 
     makeItRain() {
