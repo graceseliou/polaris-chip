@@ -30,20 +30,20 @@ export class PartyUI extends DDD {
         }
 
         .party-ui-wrapper {
-            background-color: pink;
+            background-color: grey;
             padding: 20px;
-            width: 400px;
+            width: 450px;
             height: 420px;
             display: inline-block;
             overflow: auto;
             margin-left: 200px;
             border: 2px solid white;
         }
-
+        
         .usernames-wrapper {
-            background-color: #371f76;
+            background-color: lightblue;
             padding: 20px;
-            width: 250px;
+            width: 300px;
             display: flex;
             margin: auto;
             margin-top: 25px;
@@ -83,9 +83,9 @@ export class PartyUI extends DDD {
         }
 
         .end-wrapper {
-            background-color: #371f76;
+            background-color: lightblue;
             padding: 5px;
-            width: 280px;
+            width: 330px;
             display: flex;
             margin: auto;
             justify-content: center;
@@ -113,6 +113,7 @@ export class PartyUI extends DDD {
                 <button id="add-user-button" @click="${this.addUser}" ?disabled="${this.userArray.length >= this.maxUsers}">Add User</button>
             </div>
             <div class="characters-wrapper">
+                <div class="users-wrapper"></div>
                 ${this.userArray.map(element =>
                     this.characterView(element))}
             </div>
@@ -131,6 +132,7 @@ export class PartyUI extends DDD {
         return html `
         <div>
             <rpg-character id="rpg" hat="random" seed=${name} style="height: 100px; width: 100px;"></rpg-character>
+            <p></p>
             <p>${name}</p>
         </div>
         `;
