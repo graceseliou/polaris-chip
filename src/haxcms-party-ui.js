@@ -29,22 +29,16 @@ export class PartyUI extends DDD {
             margin: 0px;
         }
 
-        /* .my-div {
-          padding: var(-ddd-spacing-5);
-          margin: var(--ddd-spacing-2) var(--ddd-spacing-0);
-          color: var(--ddd-theme-default-keystoneYellow);
-        } */
-
         .everything-wrapper {
             display: inline-flex;
             flex-direction: row;
-            padding: 8px;
-            margin: 8px;
+            padding: var(--ddd-spacing-2);
+            margin: var(--ddd-spacing-2);
         }
 
         .party-ui-wrapper {
-            background-color: grey;
-            padding: 20px;
+            background-color: var(--ddd-theme-default-limestoneGray);
+            padding: var(--ddd-spacing-5);
             width: 650px;
             height: 470px;
             display: inline-block;
@@ -53,8 +47,8 @@ export class PartyUI extends DDD {
         }
         
         .usernames-wrapper {
-            background-color: lightblue;
-            padding: 20px;
+            background-color: var(--ddd-theme-default-alertImmediate);
+            padding: var(--ddd-spacing-5);
             width: 300px;
             display: flex;
             margin: auto;
@@ -66,7 +60,7 @@ export class PartyUI extends DDD {
         }
 
         .characters-wrapper {
-            padding: 20px;
+            padding: var(--ddd-spacing-5);
             width: 600px;
             display: flex;
             margin: auto;
@@ -87,14 +81,14 @@ export class PartyUI extends DDD {
         }
 
         .users-wrapper {
-            background-color: lightblue;
+            background-color: var(--ddd-theme-default-alertImmediate);
             border: 2px solid white;
             display: flex;
             /* flex-wrap: wrap; */
         }
 
         .user-container {
-            background-color: grey;
+            background-color: var(--ddd-theme-default-limestoneGray);
             margin: 10px;
             padding: 10px;
             border: 2px solid white;
@@ -106,8 +100,8 @@ export class PartyUI extends DDD {
         }
 
         .end-wrapper {
-            background-color: lightblue;
-            padding: 20px;
+            background-color: var(--ddd-theme-default-alertImmediate);
+            padding: var(--ddd-spacing-5);
             width: 330px;
             display: flex;
             margin: auto;
@@ -124,9 +118,9 @@ export class PartyUI extends DDD {
         .popUp {
             display: flex;
             flex-direction: column;
-            background-color: lightblue;
+            background-color: var(--ddd-theme-default-alertImmediate);
             border: 2px solid white;
-            color: black;
+            color: var(--ddd-theme-default-potentialMidnight);
         }
       `];
     }
@@ -149,7 +143,7 @@ export class PartyUI extends DDD {
             <div class="party-ui-wrapper">
                 <div class="usernames-wrapper">
                     <input class="text-input" type="text" value=${this.username} @input=${this.updateName}>
-                    <button id="add-user-button" @click="${this.addUser}" ?disabled="${this.userArray.length >= this.maxUsers}">Add User</button>
+                    <button id="add-user-button" @click="${this.addUser}" ?disabled="${this.userArray.length >= this.maxUsers}">Add user</button>
                 </div>
                 <div class="characters-wrapper">
                     <div class="users-wrapper">
@@ -160,7 +154,7 @@ export class PartyUI extends DDD {
                 <confetti-container id="confetti">
                     <div class="end-wrapper">
                         <p class="save">${this.save}</p>
-                        <button class="save-button" @click="${this.makeItRain}" ?disabled="${this.userArray.length == 0}">Save</button>
+                        <button class="save-button" @click="${this.makeItRain}" ?disabled="${this.userArray.length == 0}">Save members to party</button>
                     </div>
                 </confetti-container>
             </div>
@@ -174,21 +168,35 @@ export class PartyUI extends DDD {
     }
 
     characterView(name) {
+        let sidebarStyle="";
+
+        if(name===this.tempUser) {
+            sidebarStyle = "margin-top: 16px;"
+        }
+
         return html `
         <div class="user-container">
             <div class="user-character">
                 <rpg-character id="rpg" hat="random" seed=${name} style="height: 100px; width: 100px;"></rpg-character>
                 <br>
-                <p>${name}</p>
+                <p style="${sidebarStyle}">${name}</p>
             <button class="delete-button" id="${name}" @click="${this.deleteUser}">Delete</button>
         </div>
         `;
     }
 
     updateName(event) {
-        this.tempUser = event.target.value;
-        // this.username = event.target.value;
-        // this.userArray[this.userArray.length - 1] = event.target.value;
+        let inputValue = event.target.value;
+        const sanitizedValue = inputValue.replace(/[^a-z0-9]/g, "");
+        event.target.value = sanitizedValue;
+
+        this.tempUser = sanitizedValue;
+        this.sidebar = sanitizedValue.length > 0;
+
+        // this.tempUser = event.target.value;
+        // this.sidebar = true;
+
+        this.requestUpdate();
     }
 
     addUser(event) {
@@ -244,6 +252,11 @@ export class PartyUI extends DDD {
             }
         );
     } 
+
+    // saveAlert() {
+    //     const saveAlert = this.userArray.join(", ");
+    //     alert("successfully added to party!");
+    // }
 
     updated(changedProperties) {
         if (changedProperties.has('save')) {
