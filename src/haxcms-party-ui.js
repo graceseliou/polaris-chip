@@ -26,7 +26,7 @@ export class PartyUI extends DDD {
         }
         
         p{
-            margin: 0px;
+            margin: var(--ddd-spacing-0);
         }
 
         .everything-wrapper {
@@ -34,13 +34,14 @@ export class PartyUI extends DDD {
             flex-direction: row;
             padding: var(--ddd-spacing-2);
             margin: var(--ddd-spacing-2);
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .party-ui-wrapper {
             background-color: var(--ddd-theme-default-creekLight);
             padding: var(--ddd-spacing-5);
             width: 650px;
-            height: 470px;
+            height: 570px;
             display: inline-block;
             overflow: auto;
             border: 2px solid white;
@@ -48,8 +49,24 @@ export class PartyUI extends DDD {
             box-shadow: var(--ddd-boxShadow-lg);
         }
 
+        .rules-wrapper {
+            background-color: var(--ddd-theme-default-alertImmediate);
+            border: 2px solid white;
+            border-radius: var(--ddd-radius-md);
+            font-size: 14px;
+            width: 525px;
+            height: var(--ddd-spacing-25);
+            margin: auto;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .add-user-button {
             cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
         }
         
         .usernames-wrapper {
@@ -107,10 +124,12 @@ export class PartyUI extends DDD {
         .delete-button {
             margin-left: 22px;
             cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .save-button {
             cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .end-wrapper {
@@ -137,6 +156,9 @@ export class PartyUI extends DDD {
             border: 2px solid white;
             border-radius: var(--ddd-radius-md);
             color: var(--ddd-theme-default-potentialMidnight);
+            padding: 5px 10px 45px;
+            justify-content: center;
+            align-items: center;
         }
       `];
     }
@@ -157,6 +179,13 @@ export class PartyUI extends DDD {
         return html`
         <div class="everything-wrapper">
             <div class="party-ui-wrapper">
+                <div class="rules-wrapper">
+                    <p>RULES:</p>
+                    <p>1. usernames can only contain lowercase letters and numbers</p>
+                    <p>2. maximum of 4 users per party</p>
+                    <p>3. hit "add user" to do so</p>
+                    <p>4. hit "save members to party" to do so</p>
+                </div>
                 <div class="usernames-wrapper">
                     <input class="text-input" type="text" value=${this.username} @input=${this.updateName}>
                     <button class="add-user-button" @click="${this.addUser}" ?disabled="${this.userArray.length >= this.maxUsers}">Add user</button>
