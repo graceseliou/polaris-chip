@@ -235,11 +235,18 @@ export class PartyUI extends DDD {
     }
 
     addUser(event) {
+        if (this.tempUser.trim() === "") {
+            return;
+        }
+
+        if (this.userArray.includes(this.tempUser)) {
+            alert(`username already added`);
+            return;
+        }
+        
         if(this.userArray.length < this.maxUsers) {
             this.userArray.push(this.tempUser);
-            // this.userArray[this.userArray.length - 1];
             this.shadowRoot.querySelector('.text-input').value ="";
-            // this.userArray.push("");
             this.sidebar = false;
             setTimeout(() => { 
                 this.requestUpdate();
@@ -289,13 +296,10 @@ export class PartyUI extends DDD {
 
     saveAlert() {
         this.makeItRain();
-        alert(`the following users have been saved to your party: ${this.userArray.join(', ')}`);
+        alert(`the following users have been saved to your party: (${this.userArray.join(', ')}) click OK to finish or continue adding more users!`);
     }
 
     updated(changedProperties) {
-        if (changedProperties.has('save')) {
-          this.makeItRain();
-        }
     }
   }
 
